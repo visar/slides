@@ -145,6 +145,10 @@ KIKA means Information, Culture, Authonomy
 
 ---
 
+# Sysadmin events
+
+---
+
 * https://blog.spodeli.org/
 * #lugola at freenode.net
 * https://lists.softver.org.mk/listinfo/ossm-members
