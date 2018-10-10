@@ -15,113 +15,128 @@
     <body>
 
         <div class="reveal">
-            <div class="slides"><section  data-markdown><script type="text/template"># Free and Open Source Software in Macedonia
+            <div class="slides"><section  data-markdown><script type="text/template"># Basic concepts
 
-Visar Zejnullahu (vnz)
+  - <https://i.redd.it/7q82mjjyh6z01.jpg>
+  - <http://i.imgur.com/MKjkKJ9.jpg>
+</script></section><section  data-markdown><script type="text/template">
+# Anatomy of git
 
-Free Software Macedonia
+  - <https://i.imgur.com/oodiCnB.png>
 </script></section><section  data-markdown><script type="text/template">
-# Free vs Open Source Software
+# Commit messages
 
-> Think free as in free speech (libre), not free beer (gratis).
-</script></section><section  data-markdown><script type="text/template">
-0. Freedom to run the program as you wish.
-1. Freedom to study the source code of the program and then change it so the program does what you wish.
-2. Freedom to help your neighbour. That’s the freedom to redistribute the exact copies of the software when you wish.
-3. Freedom to contribute to your community. That’s the freedom to distribute copies or modified versions when you wish.
-</script></section><section  data-markdown><script type="text/template">
-<!-- .slide: data-background="./cathedral.jpg" -->
-# The Cathedral and The Bazaar
-
-* Linux kernel vs fetchmail
-* rms vs esr
-</script></section><section  data-markdown><script type="text/template">
-# Linus's Law
-
-> Given enough eyeballs, all bugs are shallow
-</script></section><section  data-markdown><script type="text/template">
-# FSM
-
-* Covering Free Software on a technical, technological and logistic level
-* Dealing with the policy, social and ethical issues concerning Free Software
-</script></section><section  data-markdown><script type="text/template">
-# Localization of Free Software into Macedonian
-
-Translation and localization marathons at events such as Software Freedom Day and annual installfests
-</script></section><section  data-markdown><script type="text/template">
-* OpenOffice.org
-* Mozilla products
-* GNOME
-* KDE
-* Several GNU/Linux distributions such as Ubuntu, Fedora, Red Hat have been localized into Macedonian
-</script></section><section  data-markdown><script type="text/template">
-Collaboration with government and non-government agencies on free/open source software
-</script></section><section  data-markdown><script type="text/template">
-# Free Software Flood in 2004
-
-Knoppix CDs at a Microsoft event
-
-https://www.slobodensoftver.org.mk/freesoftwareflood/
-</script></section><section  data-markdown><script type="text/template">
-# Community
-
-* Hundreds of mostly young people, university and high school students.
-* Mailing list [ossm-members] and on the IRC channel #lugola on irc.freenode.net
-</script></section><section  data-markdown><script type="text/template">
-# Programs and projects
-
-* Localization stopped
-</script></section><section  data-markdown><script type="text/template">
-# SHARE (СПОДЕЛИ)
-
-* Started a new program
-</script></section><section  data-markdown><script type="text/template">
-# Multiple projects
-</script></section><section  data-markdown><script type="text/template">
-# Share Cinema - Сподели Кино
-</script></section><section  data-markdown><script type="text/template">
-# Share Knowledge - Сподели Знаење
-
-* Multiple public lectures on FOSS at local schools, universities
-</script></section><section  data-markdown><script type="text/template">
-# Hacking
-</script></section><section  data-markdown><script type="text/template">
-# Stallman was here!
-
-<!-- .slide: data-background="./stallman.jpg" -->
-</script></section><section  data-markdown><script type="text/template">
-# Can you hack Facebook accounts?
-</script></section><section  data-markdown><script type="text/template">
-<!-- .slide: data-background="./cat.jpg" -->
-# NO
+  - <https://imgur.com/8s753HN>
+  - <https://chris.beams.io/posts/git-commit/>
+  - <https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html>
 </script></section><section  data-markdown><script type="text/template">
 
-# Hacklab KIKA 1.0
+# Tips and tricks
 
-KIKA means Information, Culture, Authonomy
-</script></section><section  data-markdown><script type="text/template">
-# Regular Events
+  - reflog
+ </script></section><section  data-markdown><script type="text/template">
+ - amend
+ </script></section><section  data-markdown><script type="text/template">
+ - diff (staged)
+ </script></section><section  data-markdown><script type="text/template">
+ - rebase (interactive)
+ </script></section><section  data-markdown><script type="text/template">
+ - stash
+ </script></section><section  data-markdown><script type="text/template">
+ - I accidentally committed something to master that should have been
+    on a brand new branch\!
 
-* GNU/Linux first aid (recently we tried OpenBSD too)
-* Programming Languages
-* Share knowledge
-</script></section><section  data-markdown><script type="text/template">
-# NSND unconference
+<!-- end list -->
 
-* Nothing is gonna happen!
-</script></section><section  data-markdown><script type="text/template">
-# Hacklab 2.0 & 3.0
+``` bash
+# create a new branch from the current state of master
+git branch some-new-branch-name
+# remove the commit from the master branch
+git reset HEAD~ --hard
+git checkout some-new-branch-name
+# your commit lives in this branch now :)
+```
 
-* Recently moved to a new location
-</script></section><section  data-markdown><script type="text/template">
-# Sysadmin events
-</script></section><section  data-markdown><script type="text/template">
-* https://blog.spodeli.org/
-* #lugola at freenode.net
-* https://lists.softver.org.mk/listinfo/ossm-members
+ </script></section><section  data-markdown><script type="text/template">
+ - I accidentally committed to the wrong branch\!
 
-<aside class="notes"><p>speaker notes FTW!</p>
-</aside></script></section></div>
+<!-- end list -->
+
+``` bash
+# undo the last commit, but leave the changes available
+git reset HEAD~ --soft
+git stash
+# move to the correct branch
+git checkout name-of-the-correct-branch
+git stash pop
+git add . # or add individual files
+git commit -m "your message here"
+# now your changes are on the correct branch
+```
+</script></section><section  data-markdown><script type="text/template">
+
+``` bash
+git checkout name-of-the-correct-branch
+# grab the last commit to master
+git cherry-pick master
+# delete it from master
+git checkout master
+git reset HEAD~ --hard
+```
+</script></section><section  data-markdown><script type="text/template">
+
+# GITIGNORE
+
+  - <https://www.gitignore.io/>
+</script></section><section  data-markdown><script type="text/template">
+
+# GIT FLOW
+
+  - <https://veerasundar.com/blog/2018/03/gitflow-animated/>
+  - <https://opensource.com/article/18/6/anatomy-perfect-pull-request>
+</script></section><section  data-markdown><script type="text/template">
+
+# CHEATSHEETS
+
+  - <https://zeroturnaround.com/rebellabs/git-commands-and-best-practices-cheat-sheet/>
+  - <https://github.com/k88hudson/git-flight-rules/blob/master/README.md#flight-rules-for-git>
+</script></section><section  data-markdown><script type="text/template">
+
+# Extra: bisect
+
+  - <https://rkoutnik.com/articles/The-gits-guide-to-git-Bisect.html>
+</script></section><section  data-markdown><script type="text/template">
+
+# MISC
+
+  - <https://www.troyhunt.com/10-commandments-of-good-source-control/?m=1>
+</script></section><section  data-markdown><script type="text/template">
+
+# BOOK
+
+  - <https://git-scm.com/book/en/v2>
+</script></section><section  data-markdown><script type="text/template">
+
+# xkcd
+
+  - <https://www.xkcd.com/1597/>
+  - <https://xkcd.com/1296/>
+</script></section><section  data-markdown><script type="text/template">
+
+# Videos
+
+  - <https://www.youtube.com/watch?v=ZDR433b0HJY>
+  - <https://youtu.be/HDRXwokgWpo>
+  - <https://www.youtube.com/watch?v=Y9XZQO1n_7c>
+  - <https://www.youtube.com/watch?v=IHaTbJPdB-s>
+</script></section><section  data-markdown><script type="text/template">
+
+# COURSES
+
+  - <https://www.udacity.com/course/how-to-use-git-and-github--ud775>
+  - <https://gettinggit.com/>
+  - <https://trevordmiller.com/courses/real-world-git>
+</script></section></div>
         </div>
 
         <script src="./lib/js/head.min.js"></script>
@@ -171,7 +186,7 @@ KIKA means Information, Culture, Authonomy
 
 
         <script>
-            Reveal.initialize(options);
+          Reveal.initialize(options);
         </script>
     </body>
 </html>
